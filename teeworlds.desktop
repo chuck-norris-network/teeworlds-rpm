@@ -1,0 +1,9 @@
+[Desktop Entry]
+Categories=Game;ArcadeGame;
+Name=Teeworlds
+Type=Application
+Terminal=false
+Exec=teeworlds
+Icon=teeworlds
+Comment=Online multi-player platform 2D shooter
+Encoding=UTF-8
