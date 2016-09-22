@@ -1,25 +1,13 @@
-%global commit 62a4bd8289b02cad91d7f6141792d8f61a82ab9c
-%global shortcommit %(c=%{commit}; echo ${c:0:7})
-%global snapshot 1
 %global _hardened_build 1
-
 Name:             teeworlds
-Version:          0.6.4
-%if 0%{?snapshot}
-Release:          20160822git%{shortcommit}%{?dist}
-%else
-Release:          1%{?dist}
-%endif
+Version:          0.6.3
+Release:          4%{?dist}
 Summary:          Online multi-player platform 2D shooter
 
 Group:            Amusements/Games
 License:          Teeworlds
 URL:              http://www.teeworlds.com/
-%if 0%{?snapshot}
-Source0:          https://github.com/teeworlds/teeworlds/archive/%{commit}.tar.gz#/%{name}-%{shortcommit}.tar.gz
-%else
-Source0:          http://downloads.teeworlds.com/%{name}-0.6.3-src.tar.gz
-%endif
+Source0:          http://downloads.teeworlds.com/%{name}-%{version}-src.tar.gz
 Source1:          %{name}.png
 Source2:          %{name}.desktop
 # systemd unit definition
@@ -28,6 +16,7 @@ Source3:          %{name}-server@.service
 Source4:          server_dm.cfg
 Source5:          server_tdm.cfg
 Source6:          server_ctf.cfg
+Patch0:           %{name}-0.6.2-extlibs-optflags.patch
 
 BuildRequires:    mesa-libGLU-devel
 BuildRequires:    bam >= 0.4.0
@@ -43,9 +32,9 @@ BuildRequires:    freetype-devel
 Requires:         %{name}-data
 
 %description
-The game features cartoon-themed graphics and physics,
-and relies heavily on classic shooter weaponry and gameplay.
-The controls are heavily inspired by the FPS genre of computer games.
+The game features cartoon-themed graphics and physics, 
+and relies heavily on classic shooter weaponry and gameplay. 
+The controls are heavily inspired by the FPS genre of computer games. 
 
 %package          server
 Summary:          Server for %{name}
@@ -58,7 +47,7 @@ Requires(postun): systemd
 BuildRequires:    systemd
 
 %description      server
-Server for %{name}, an online multi-player platform 2D shooter.
+Server for %{name}, an online multi-player platform 2D shooter. 
 
 %package          data
 Summary:          Data-files for %{name}
@@ -76,11 +65,10 @@ fi
 exit 0
 
 %prep
-%if 0%{?snapshot}
-%setup -q -n %{name}-%{commit}
-%else
 %setup -q -n %{name}-%{version}-src
-%endif
+rm -rf src/engine/external
+
+%patch0 -p1
 
 #for f in ./readme.txt ./src/game/editor/array.hpp
 #do
@@ -282,7 +270,7 @@ install    -m 0664 %{SOURCE6} %{buildroot}%{_sysconfdir}/%{name}/ctf.cfg
 
 * Fri Jan 02 2009 Simon Wesp <cassmodiah@fedoraproject.org> 0.4.3-5
 - Remove requires from subpackage 'data'
-- Correct description
+- Correct description 
 
 * Thu Jan 01 2009 Simon Wesp <cassmodiah@fedoraproject.org> 0.4.3-4
 - Drop desktop-file and icon for subpackage 'server'
@@ -302,3 +290,4 @@ install    -m 0664 %{SOURCE6} %{buildroot}%{_sysconfdir}/%{name}/ctf.cfg
 
 * Sat Sep 13 2008 Simon Wesp <cassmodiah@fedoraproject.org> 0.4.3-1
 - Initial Release
+
