@@ -6,6 +6,8 @@ After=syslog.target network.target
 User=teeworlds
 WorkingDirectory=/etc/teeworlds/
 ExecStart=/usr/bin/teeworlds-srv -f %i.cfg
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
