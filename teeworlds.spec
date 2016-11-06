@@ -1,4 +1,4 @@
-%global commit 5c618d6944aa9c448cabaf903cd87996f08a9fa6
+%global commit 93f5b3d9064bb13532c6d203e12b21b290ad81b7
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global origname teeworlds
 %global _hardened_build 1
