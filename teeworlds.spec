@@ -1,11 +1,11 @@
-%global commit 93f5b3d9064bb13532c6d203e12b21b290ad81b7
+%global commit 94d23e849ff47d428138a91111e6b57ef1f157cb
 %global shortcommit %(c=%{commit}; echo ${c:0:7})
 %global origname teeworlds
 %global _hardened_build 1
 
 Name:             teeworlds-server
 Version:          0.6.4
-Release:          20161101git%{shortcommit}%{?dist}
+Release:          20161126git%{shortcommit}%{?dist}
 Summary:          Online multi-player platform 2D shooter
 
 Group:            Amusements/Games
